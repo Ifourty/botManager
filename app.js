@@ -37,9 +37,11 @@ db.connect();
 // Routes
 const indexRouter = require('./routes/index');
 const loginRouter = require('./routes/login');
+const logoutRouter = require('./routes/logout');
 
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
+app.use('/logout', logoutRouter);
 
 // Lancement du serveur
 app.listen(port, () => {

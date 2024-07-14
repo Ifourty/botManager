@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="css/navbar.css">
+<script src="javascript/navbar/main.js" defer type="module"></script>
+
+<div id="navBar">
+    <div id="navBartop">
+        <a href="./">
+            <img src="img/icon.png" alt="logo">
+            <div id="nav">
+            {% if nav == 'LeakNews' %}
+                <a href="./" class="active">LeakNews</a>
+                <a href="./?page=profile">Profile</a>
+                <a href="./?page=logout">Logout</a>
+            {% elseif nav == 'Animedle' %}
+                <a href="./">LeakNews</a>
+                <a href="./?page=profile" class="active">Profile</a>
+                <a href="./?page=logout">Logout</a>
+            {% endif %}
+            </div>
+        </a>
+    </div>
+    <div id="navBarBottom">
+        <p>{{user.NAME}}</p>
+        <p>Level : {{user.LEVEL}}</p>
+        <button id="logout" class="btn btn-danger">Logout</button>
+    </div>
+</div>

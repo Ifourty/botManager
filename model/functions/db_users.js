@@ -1,8 +1,8 @@
 const db = require('../classes/DataBase');
 
 
-function get_user_by_id(id) {
-    return db.query('SELECT * FROM user WHERE id = ?', [id]);
+async function get_user_by_id(id) {
+    return await db.query('SELECT * FROM user WHERE id = ?', [id]);
 }
 
 async function try_login(username, password) {

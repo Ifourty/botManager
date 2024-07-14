@@ -3,10 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
     {% include 'partials/_bootstraps.html.twig' %}
+    <link rel="stylesheet" href="css/index.css">
+    <script src="javascript/index/main.js" defer type="module"></script>
 </head>
 <body>
-    <h1>azeaze</h1>
+    <div id="pageContainer">     
+        {% include 'partials/_navbar.html.twig' %}
+        <div id="content">
+            <h2> Discord Bots </h2>
+            <div id="discordBotsContainer">
+                <div class="discordBot">
+                    <img src="img/LeakNews.jpg" alt="LeaksNews">
+                    <h3>LeaksNews</h3>
+                    <p>A bot to post leaks about diverses video games</p>
+                    <button class="btn btn-primary selectBtn" id="LeaksNews">Select</button>
+                </div>
+                <div class="discordBot">
+                    <img src="img/AnimeDle.png" alt="AnimeDle">
+                    <h3>AnimeDle</h3>
+                    <p>An Anime Dle (i'll bring it back to life)</p>
+                    <button class="btn btn-primary selectBtn" id="AnimeDle">Select</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
