@@ -38,10 +38,12 @@ db.connect();
 const indexRouter = require('./routes/index');
 const loginRouter = require('./routes/login');
 const logoutRouter = require('./routes/logout');
+const leaknewsRouter = require('./routes/LeakNews');
 
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/logout', logoutRouter);
+app.use('/leaknews', leaknewsRouter);
 
 // Lancement du serveur
 app.listen(port, () => {
