@@ -1,0 +1,51 @@
+<link rel="stylesheet" href="css/navbar.css">
+<script src="javascript/navbar/main.js" defer type="module"></script>
+
+<div id="navBar">
+    <div id="navBartop">
+        <a href="./">
+            <img src="img/icon.png" alt="logo">
+        </a>
+            <div id="nav">
+            {% if user.LEVEL == 100 %}
+                <div class ="cate">
+                    <p class="cateTitle">Admin</p>
+                    <div class="undCate">
+                        <p class="undCateTitle">Manage</p>
+                        <div class ="itemContainer">
+                            <a href="./admin">Users</a>
+                            <a href="./admin">Bots</a>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            {% if nav == 'LeakNews' %}
+                <div class="cate">
+                    <p class="cateTitle">LeakNews</p>
+                    <div class="undCate">
+                        <p class="undCateTitle">Settings</p>
+                        <div class = "itemContainer">
+                            <a href="./serveur">Servers</a>
+                            <a href="./jeux">Games</a>
+                        </div>
+                    </div>
+                    <div class="undCate">
+                        <p class="undCateTitle">Create</p>
+                        <div class ="itemContainer">
+                            <a href="./create" class="active">Post</a>
+                        </div>
+                    </div>
+                </div>
+            {% elseif nav == 'Animedle' %}
+                <a href="./">LeakNews</a>
+                <a href="./?page=profile" class="active">Profile</a>
+                <a href="./?page=logout">Logout</a>
+            {% endif %}
+            </div>
+    </div>
+    <div id="navBarBottom">
+        <p>{{user.NAME}}</p>
+        <p>Level : {{user.LEVEL}}</p>
+        <button id="logout" class="btn btn-danger">Logout</button>
+    </div>
+</div>
