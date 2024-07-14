@@ -1,0 +1,30 @@
+{
+  "name": "botmanager",
+  "version": "1.0.0",
+  "description": "bot discord manager",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ifourty/botManager.git"
+  },
+  "keywords": [
+    "Discord",
+    "Bot"
+  ],
+  "author": "Ifourty",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ifourty/botManager/issues"
+  },
+  "homepage": "https://github.com/Ifourty/botManager#readme",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "mysql2": "^3.10.2",
+    "twig": "^1.17.1"
+  }
+}

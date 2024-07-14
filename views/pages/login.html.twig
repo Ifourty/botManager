@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% include 'partials/_bootstraps.html.twig' %}
+    <link rel="stylesheet" href="css/login.css">
+    <script src="javascript/login/main.js" defer type="module"></script>
+</head>
+<body>
+    <div id="container">
+        <div id="loginContainer">
+            <div id="leftSide">
+                <h3>Login</h3>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Password</label>
+                    <input type="password" id="passwordUser" name="passwordUser" class="form-control">
+                </div>
+                <div id="submitBtn" class="btn btn-primary">Login</div>
+                    <div id="errorDiv" class="alert alert-danger {% if error %}d-block{% else %}d-none{% endif %}
+                    " role="alert">
+                        <p id="errorText">
+                            {{ error }}
+                        </p>
+                    </div>
+            </div>
+            <div id="rightSide">
+                <img src="img/icon.png" alt="icon">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
