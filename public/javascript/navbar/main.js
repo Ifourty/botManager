@@ -1,4 +1,6 @@
 var logout;
+var navBartop;
+var scrollToActive;
 
 function main(){
     loadVariables();
@@ -7,12 +9,16 @@ function main(){
 
 function loadVariables(){
     logout = document.getElementById('logout');
+    navBartop = document.getElementById('navBartop');
+    scrollToActive = document.getElementsByClassName('active')[0];
 }
 
 function initComponent(){
     logout.addEventListener('click', async () => {
         tryLogout();
     });
+    
+    scrollToActive.scrollIntoView();
 }
 
 function tryLogout(){

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% include 'partials/_bootstraps.html.twig' %}
+    <link rel="stylesheet" href="css/game.css">
+</head>
+<body>
+    <div id="pageContainer">     
+        {% include 'partials/_navbar.html.twig' %}
+        <div id="content">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">NAME</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for game in  games %}
+                        {% if editID == game.ID %}
+                            <tr>
+                                <form action="/leaknewsgames/edit" method="POST">
+                                    <td><input type="text" name="NAME" value="{{ game.NAME }}"></td>
+                                    <td>
+                                        <input type="hidden" name="ID" value="{{ game.ID }}">
+                                        <button type="submit" class="btn btn-success">Save</button>
+                                    </td>
+                                </form>
+                            </tr>
+                        {% else %}
+                        <tr>
+                            <td>{{ game.NAME }}</td>
+                            <td>
+                                <a href="/leaknewsgames?edit={{ game.ID }}" class="btn btn-primary">Edit</a>
+                                <a href="/leaknewsgames?delete={{ game.ID }}" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a type="button" href="/leaknewsgames/new" class="btn btn-primary" id="addGame">Add Game</a>
+        </div>
+    </div>
+</body>
+</html>

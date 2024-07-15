@@ -1,0 +1,22 @@
+#content{
+    margin-top: 10vh;
+    display: flex;
+    flex-direction: column;
+    width: 98%;
+    margin-left: 2%;
+}
+
+#content table{
+    overflow-y: auto;
+}
+
+#addGame{
+    width: 20%;
+    background-color: var(--colorC);
+    border: none;
+}
+
+#addGame:hover{
+    background-color: var(--darkerColorC);
+    cursor: pointer;
+}

@@ -11,7 +11,7 @@ function loadVariables(){
 
 function initComponent(){
     LeaksNews.addEventListener('click', async () => {
-        window.location.href = '/leaknews';
+        window.location.href = '/leaknewspost';
     });
 }
 

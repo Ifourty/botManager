@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% include 'partials/_bootstraps.html.twig' %}
+    <link rel="stylesheet" href="css/server.css">
+</head>
+<body>
+    <div id="pageContainer">     
+        {% include 'partials/_navbar.html.twig' %}
+        <div id="content">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">NAME</th>
+                        <th scope="col">ID_DISCORD</th>
+                        <th scope="col">ACTIONS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for server in servers %}
+                        {% if editID == server.ID %}
+                            <tr>
+                                <form action="/leaknewsserver/edit" method="POST">
+                                    <td><input type="text" name="NAME" value="{{ server.NAME }}"></td>
+                                    <td><input type="text" name="ID_DISCORD" value="{{ server.ID_DISCORD }}"></td>
+                                    <td>
+                                        <input type="hidden" name="ID" value="{{ server.ID }}">
+                                        <button type="submit" class="btn btn-success">Save</button>
+                                    </td>
+                                </form>
+                            </tr>
+                        {% else %}
+                        <tr>
+                            <td>{{ server.NAME }}</td>
+                            <td>{{ server.ID_DISCORD }}</td>
+                            <td>
+                                <a href="/leaknewsserver?edit={{ server.ID }}" class="btn btn-primary">Edit</a>
+                                <a href="/leaknewsserver?delete={{ server.ID }}" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a type="button" href="/leaknewsserver/new" class="btn btn-primary" id="addServer">Add Server</a>
+        </div>
+    </div>
+</body>
+</html>

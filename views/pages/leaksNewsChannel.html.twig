@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% include 'partials/_bootstraps.html.twig' %}
+    <link rel="stylesheet" href="css/channel.css">
+    <script src="../javascript/post/main.js" defer type="module"></script>
+</head>
+<body>
+    <div id="pageContainer">     
+        {% include 'partials/_navbar.html.twig' %}
+        <div id="content">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">SERVER</th>
+                        <th scope="col">NAME</th>
+                        <th scope="col">ID_CHANNEL</th>
+                        <th scope="col">GAME</th>
+                        <th scope="col">ACTIONS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for channel in  channels %}
+                        {% if editID == channel.ID %}
+                            <tr>
+                                <form action="/leaknewschannel/edit" method="POST">
+                                    <td>
+                                        <select name="ID_SERVER" class="form-control">
+                                            <option value="" {% if channel.SERVER == "" %} selected {% endif %}>none</option>
+                                            {% for server in servers %}
+                                                <option value="{{ server.ID }}" {% if channel.SERVER == server.NAME %} selected {% endif %}>{{ server.NAME }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="NAME" value="{{ channel.NAME }}">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="ID_CHANNEL" value="{{ channel.ID_CHANNEL }}">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <select name="ID_GAME" class="form-control">
+                                            <option value="" {% if channel.GAME == "" %} selected {% endif %}>none</option>
+                                            {% for game in games %}
+                                                <option value="{{ game.ID }}" {% if channel.GAME == game.NAME %} selected {% endif %}>{{ game.NAME }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input type="hidden" name="ID" value="{{ channel.ID }}">
+                                        <button type="submit" class="btn btn-success">Save</button>
+                                    </td>
+                                </form>
+                            </tr>
+                        {% else %}
+                        <tr>
+                            <td>{{ channel.SERVER }}</td>
+                            <td>{{ channel.NAME }}</td>
+                            <td>{{ channel.ID_CHANNEL}}</td>
+                            <td>{{ channel.GAME }}</td>
+                            <td>
+                                <a href="/leaknewschannel?edit={{ channel.ID }}" class="btn btn-primary">Edit</a>
+                                <a href="/leaknewschannel?delete={{ channel.ID }}" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a type="button" href="/leaknewschannel/new" class="btn btn-primary" id="addChannel">Add Channel</a>
+        </div>
+    </div>
+</body>
+</html>

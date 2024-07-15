@@ -38,12 +38,18 @@ db.connect();
 const indexRouter = require('./routes/index');
 const loginRouter = require('./routes/login');
 const logoutRouter = require('./routes/logout');
-const leaknewsRouter = require('./routes/LeakNews');
+const leaknewsPostRouter = require('./routes/leakNewsPost');
+const leaknewsGamesRouter = require('./routes/leakNewsGames');
+const leaknewsServerRouter = require('./routes/leakNewsServer');
+const leaksNewsChannelRouter = require('./routes/leakNewsChannel');
 
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/logout', logoutRouter);
-app.use('/leaknews', leaknewsRouter);
+app.use('/leaknewspost', leaknewsPostRouter);
+app.use('/leaknewsgames', leaknewsGamesRouter);
+app.use('/leaknewsserver', leaknewsServerRouter);
+app.use('/leaknewschannel', leaksNewsChannelRouter);
 
 // Lancement du serveur
 app.listen(port, () => {

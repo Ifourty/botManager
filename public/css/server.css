@@ -1,0 +1,22 @@
+#content{
+    margin-top: 10vh;
+    display: flex;
+    flex-direction: column;
+    width: 98%;
+    margin-left: 2%;
+}
+
+#content table{
+    overflow-y: auto;
+}
+
+#addServer{
+    width: 20%;
+    background-color: var(--colorC);
+    border: none;
+}
+
+#addServer:hover{
+    background-color: var(--darkerColorC);
+    cursor: pointer;
+}

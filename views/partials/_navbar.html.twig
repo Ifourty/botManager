@@ -13,8 +13,9 @@
                     <div class="undCate">
                         <p class="undCateTitle">Manage</p>
                         <div class ="itemContainer">
-                            <a href="./admin">Users</a>
-                            <a href="./admin">Bots</a>
+                            <a href="./managewebsiteuser" {% if active == "website_users" %} class="active" {% endif %}>Website Users</a>
+                            <a href="./admin" {% if active == "discord_users" %} class="active" {% endif %}>Discord Users</a>
+                            <a href="./admin" {% if active == "bots" %} class="active" {% endif %}>Bots</a>
                         </div>
                     </div>
                 </div>
@@ -25,20 +26,21 @@
                     <div class="undCate">
                         <p class="undCateTitle">Settings</p>
                         <div class = "itemContainer">
-                            <a href="./serveur">Servers</a>
-                            <a href="./jeux">Games</a>
+                            <a href="./leaknewsserver" {% if active == "server" %} class="active" {% endif %}>Servers</a>
+                            <a href="./leaknewschannel" {% if active == "channel" %} class="active" {% endif %}>Channel</a>
+                            <a href="./leaknewsgames"{% if active == "games" %} class="active" {% endif %}>Games</a>
                         </div>
                     </div>
                     <div class="undCate">
                         <p class="undCateTitle">Create</p>
                         <div class ="itemContainer">
-                            <a href="./create" class="active">Post</a>
+                            <a href="./leaknewspost" {% if active == "post" %} class="active" {% endif %}>Post</a>
                         </div>
                     </div>
                 </div>
             {% elseif nav == 'Animedle' %}
                 <a href="./">LeakNews</a>
-                <a href="./?page=profile" class="active">Profile</a>
+                <a href="./?page=profile">Profile</a>
                 <a href="./?page=logout">Logout</a>
             {% endif %}
             </div>
