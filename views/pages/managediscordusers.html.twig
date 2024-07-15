@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% include 'partials/_bootstraps.html.twig' %}
+    <link rel="stylesheet" href="css/manageUser.css">
+</head>
+<body>
+    <div id="pageContainer">     
+        {% include 'partials/_navbar.html.twig' %}
+        <div id="content">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">NAME</th>
+                        <th scope="col">ID_DISCORD</th>
+                        <th scope="col">ACTIONS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for userD in users %}
+                    {% if editID == userD.ID %}
+                        <tr>
+                            <form action="/managediscordusers/edit" method="POST">
+                                <td><input type="text" name="NAME" value="{{ userD.NAME }}"></td>
+                                <td><input type="text" name="ID_DISCORD" value="{{ userD.ID_DISCORD }}"></td>
+                                <td>
+                                    <input type="hidden" name="ID" value="{{ userD.ID }}">
+                                    <button type="submit" class="btn btn-success">Save</button>
+                                </td>
+                            </form>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td>{{ userD.NAME }}</td>
+                            <td>{{ userD.ID_DISCORD}}</td>
+                            <td>
+                                <a href="/managediscordusers?edit={{ userD.ID }}" class="btn btn-primary">Edit</a>
+                                <a href="/managediscordusers?delete={{ userD.ID }}" class="btn btn-danger" >Delete</a>
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+            <a type="button" href="/managediscordusers/new" class="btn btn-primary" id="addUser">Add User</a>
+        </div>
+    </div>
+</body>
+</html>
