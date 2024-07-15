@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% include 'partials/_bootstraps.html.twig' %}
+    <link rel="stylesheet" href="css/manageUser.css">
+</head>
+<body>
+    <div id="pageContainer">     
+        {% include 'partials/_navbar.html.twig' %}
+        <div id="content">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">NAME</th>
+                        <th scope="col">PASSWORD</th>
+                        <TH scope="col">LEVEL</TH>
+                        <TH scope="col">CREATE_DATE</TH>
+                        <TH scope="col">LAST_CONNEXION_DATE</TH>
+                        <th scope="col">ACTIONS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for userW in users %}
+                    {% if editID == userW.ID %}
+                        <tr>
+                            <form action="/managewebsiteuser/edit" method="POST">
+                                <td><input type="text" name="NAME" value="{{ userW.NAME }}"></td>
+                                <td><input type="text" name="PASSWORD" value="{{ userW.PASSWORD }}"></td>
+                                <td><input type="text" name="LEVEL" value="{{ userW.LEVEL }}"></td>
+                                <td>{{ userW.CREATE_DATE }}</td>
+                                <td>{{ userW.LAST_CONNEXION_DATE }}</td>
+                                <td>
+                                    <input type="hidden" name="ID" value="{{ userW.ID }}">
+                                    <button type="submit" class="btn btn-success">Save</button>
+                                </td>
+                            </form>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td>{{ userW.NAME }}</td>
+                            <td>{{ userW.PASSWORD }}</td>
+                            <td>{{ userW.LEVEL }}</td>
+                            <td>{{ userW.CREATE_DATE }}</td>
+                            <td>{{ userW.LAST_CONNEXION_DATE }}</td>
+                            <td>
+                                <a href="/managewebsiteuser?edit={{ userW.ID }}" class="btn btn-primary">Edit</a>
+                                {% if userW.ID != user.ID %}
+                                    <a href="/managewebsiteuser?delete={{ userW.ID }}" class="btn btn-danger" >Delete</a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+            <a type="button" href="/managewebsiteuser/new" class="btn btn-primary" id="addUser">Add User</a>
+        </div>
+    </div>
+</body>
+</html>

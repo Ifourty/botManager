@@ -42,6 +42,7 @@ const leaknewsPostRouter = require('./routes/leakNewsPost');
 const leaknewsGamesRouter = require('./routes/leakNewsGames');
 const leaknewsServerRouter = require('./routes/leakNewsServer');
 const leaksNewsChannelRouter = require('./routes/leakNewsChannel');
+const managewebsiteuserRouter = require('./routes/managewebsiteuser');
 
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
@@ -50,6 +51,7 @@ app.use('/leaknewspost', leaknewsPostRouter);
 app.use('/leaknewsgames', leaknewsGamesRouter);
 app.use('/leaknewsserver', leaknewsServerRouter);
 app.use('/leaknewschannel', leaksNewsChannelRouter);
+app.use('/managewebsiteuser', managewebsiteuserRouter);
 
 // Lancement du serveur
 app.listen(port, () => {
