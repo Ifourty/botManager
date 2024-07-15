@@ -13,14 +13,20 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
+                        <th scope="col">IMG</th>
                         <th scope="col">NAME</th>
+                        <th scope="col">ACTIONS</th>
+
                     </tr>
                 </thead>
                 <tbody>
                     {% for game in  games %}
                         {% if editID == game.ID %}
                             <tr>
-                                <form action="/leaknewsgames/edit" method="POST">
+                                <form action="/leaknewsgames/edit" method="POST" enctype="multipart/form-data">
+                                    <td>
+                                        <input type="file" name="IMG" accept="image/*">
+                                    </td>
                                     <td><input type="text" name="NAME" value="{{ game.NAME }}"></td>
                                     <td>
                                         <input type="hidden" name="ID" value="{{ game.ID }}">
@@ -30,6 +36,7 @@
                             </tr>
                         {% else %}
                         <tr>
+                            <td><img src="data:image/jpeg;base64,{{ game.IMG }}" alt="game image"></td>
                             <td>{{ game.NAME }}</td>
                             <td>
                                 <a href="/leaknewsgames?edit={{ game.ID }}" class="btn btn-primary">Edit</a>

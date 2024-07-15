@@ -13,6 +13,7 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
+                        <th scope="col">IMG</th>
                         <th scope="col">NAME</th>
                         <th scope="col">ID_DISCORD</th>
                         <th scope="col">ACTIONS</th>
@@ -22,7 +23,10 @@
                     {% for server in servers %}
                         {% if editID == server.ID %}
                             <tr>
-                                <form action="/leaknewsserver/edit" method="POST">
+                                <form action="/leaknewsserver/edit" method="POST" enctype="multipart/form-data">
+                                    <td>
+                                        <input type="file" name="IMG" accept="image/*">
+                                    </td>
                                     <td><input type="text" name="NAME" value="{{ server.NAME }}"></td>
                                     <td><input type="text" name="ID_DISCORD" value="{{ server.ID_DISCORD }}"></td>
                                     <td>
@@ -33,6 +37,7 @@
                             </tr>
                         {% else %}
                         <tr>
+                            <td><img src="data:image/jpeg;base64,{{ server.IMG }}" alt="server image"></td>
                             <td>{{ server.NAME }}</td>
                             <td>{{ server.ID_DISCORD }}</td>
                             <td>

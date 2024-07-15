@@ -3,12 +3,13 @@ const path = require('path');
 
 const session = require('express-session');
 require('dotenv').config();
-
+const bodyParser = require('body-parser');
 const app = express();
 const port = 8080;
 
 // Middleware pour traiter les données POST
 app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Session middleware

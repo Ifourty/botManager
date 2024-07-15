@@ -13,8 +13,12 @@ async function delete_game(ID){
     return await db.query('DELETE FROM games WHERE ID = ?', [ID]);
 }
 
-async function update_game(ID,NAME){
-    return await db.query('UPDATE games SET NAME = ? WHERE ID = ?', [NAME,ID]);
+async function update_game(ID,NAME,IMG){
+    if(IMG == ''){
+        return await db.query('UPDATE games SET NAME = ? WHERE ID = ?', [NAME,ID]);
+    } else{
+        return await db.query('UPDATE games SET NAME = ?, IMG = ? WHERE ID = ?', [NAME,IMG,ID]);
+    }
 }
 
 module.exports = {

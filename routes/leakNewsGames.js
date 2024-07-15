@@ -2,6 +2,11 @@ const express = require('express');
 const router = express.Router();
 const { get_games, create_empty_game, delete_game, update_game } = require('../model/functions/db_games');
 
+
+const multer = require('multer');
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
+
 router.get('/', async (req, res) => {
     if(!req.session.user){
         res.redirect('/login');
@@ -26,12 +31,15 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.post('/edit', async (req, res) => {
+router.post('/edit',upload.single('IMG'), async (req, res) => {
     if(!req.session.user){
         res.redirect('/login');
     } else{
         if(req.body.NAME != ""){
-            await update_game(req.body.ID, req.body.NAME);
+            var imgBase64 = "";
+            var file = req.file
+            if(file) imgBase64 = file.buffer.toString('base64');
+            await update_game(req.body.ID, req.body.NAME, imgBase64);
         } else{
             await delete_game(req.body.ID);
         }

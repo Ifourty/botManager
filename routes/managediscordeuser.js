@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
         }
 
         if(req.query.delete){
-  
+            await delete_discord_user(req.query.delete);
         }
         var data = {
             user : req.session.user,

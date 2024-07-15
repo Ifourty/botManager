@@ -11,7 +11,34 @@
     <div id="pageContainer">     
         {% include 'partials/_navbar.html.twig' %}
         <div id="content">
-            <h2> Discord Bots </h2>
+            <h2> Create a new Post </h2>
+            <h3> Select a game </h3>
+            <div id="gameSelector">
+                {% for game in games %}
+                    <div class="game" id="{{ game.ID }}">
+                        <img src="data:image/jpeg;base64,{{ game.IMG }}" alt="{{ game.NAME }}">
+                        <p>{{ game.NAME }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+            <h3> Select a server </h3>
+            <div id="serverSelector">
+                <p id="preSelectText"> Select a game to see the servers </p>
+            </div>
+            <h3> Write your post </h3>
+            <textarea id="post" placeholder="Write your post here" class="form-control"> </textarea>
+            <h3> Add images </h3>
+            <div id="imagesContainer">
+                <div class="btn btn-primary" id="addImage"> Add Image </div>
+            </div>
+
+            <div id="errorDiv" class="alert alert-danger d-none" role="alert">
+                <p id="errorText"></p>
+            </div>
+
+            <div id="postContainer">
+                <div id="submitBtn" class="btn btn-primary">Post</div>
+            </div>
         </div>
     </div>
 </body>

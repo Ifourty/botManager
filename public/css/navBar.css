@@ -1,10 +1,15 @@
 #navBar{
     display: flex;
     flex-direction: column;
+    position: fixed;
     width: 15%;
     height: 100vh;
     border-right: 1px solid var(--colorD);
     padding: 1vh;
+}
+
+#content{
+    margin-left: 17%;
 }
 
 
@@ -13,6 +18,7 @@
     height: 100vh;
     background-image: linear-gradient(to right, var(--colorA), var(--colorB));
     display: flex;
+    overflow-y: auto;
 }
 
 #navBartop{

@@ -24,10 +24,15 @@ async function create_empty_channel() {
     return await db.query('SELECT * FROM channels ORDER BY ID DESC LIMIT 1');
 }
 
+async function getServerThatContainGameId(gameId) {
+    return await db.query('SELECT DISTINCT servers.ID, servers.NAME, servers.IMG FROM servers LEFT JOIN channels ON servers.ID = channels.ID_SERVER WHERE channels.ID_GAME = ? ORDER BY servers.ID ASC', [gameId]);
+}
+
 module.exports = {
     get_channels,
     get_channels_visual,
     update_channel,
     delete_channel,
-    create_empty_channel
+    create_empty_channel,
+    getServerThatContainGameId
 };
