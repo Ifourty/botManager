@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
+const myBot = require('../model/classes/Bot');
+
 const { get_games } = require('../model/functions/db_games');
-const { getServerThatContainGameId } = require('../model/functions/db_channel');
+const { getServerThatContainGameId, get_channels_by_game_and_server } = require('../model/functions/db_channel');
 router.get('/', async (req, res) => {
     if(!req.session.user){
         res.redirect('/login');
@@ -27,3 +29,25 @@ router.get('/getservers', async (req, res) => {
         res.send(servers);
     }
 });
+
+router.post('/create', async (req, res) => {
+    if(!req.session.user){
+        res.redirect('/login');
+    } else{
+        try {
+            var id_game = req.body.id_game;
+            var id_servers = req.body.id_servers;
+            var post = req.body.post;
+            for (var i = 0; i < id_servers.length; i++) {
+                var server = id_servers[i];
+                let channel = await get_channels_by_game_and_server(id_game, server);
+                myBot.sendMessage(channel[0].ID_CHANNEL, post);
+            }
+            res.status(200).send('ok');
+        } catch (error) {
+            console.log(error);
+            res.status(500).send('error');
+        }
+    }
+});
+    

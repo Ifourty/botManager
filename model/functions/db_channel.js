@@ -28,11 +28,16 @@ async function getServerThatContainGameId(gameId) {
     return await db.query('SELECT DISTINCT servers.ID, servers.NAME, servers.IMG FROM servers LEFT JOIN channels ON servers.ID = channels.ID_SERVER WHERE channels.ID_GAME = ? ORDER BY servers.ID ASC', [gameId]);
 }
 
+async function get_channels_by_game_and_server(gameId, serverId) {
+    return await db.query('SELECT * FROM channels WHERE ID_GAME = ? AND ID_SERVER = ? ORDER BY ID ASC', [gameId, serverId]);
+}
+
 module.exports = {
     get_channels,
     get_channels_visual,
     update_channel,
     delete_channel,
     create_empty_channel,
-    getServerThatContainGameId
+    getServerThatContainGameId,
+    get_channels_by_game_and_server
 };

@@ -3,6 +3,9 @@ var games;
 var serverSelector;
 var selectedServers;
 
+var submitBtn
+var post;
+
 function main(){
     loadVariables();
     initComponent();
@@ -13,6 +16,8 @@ function loadVariables(){
     selectedServers = [];
     games = document.getElementsByClassName('game');
     serverSelector = document.getElementById('serverSelector');
+    submitBtn = document.getElementById('submitBtn');
+    post = document.getElementById('post');
 }
 
 function initComponent(){
@@ -28,6 +33,34 @@ function initComponent(){
         });
         
     }
+
+    submitBtn.addEventListener('click', async () => {
+        if(selectedGame == null){
+            alert('Please select a game');
+            return;
+        }
+
+        if(selectedServers.length == 0){
+            alert('Please select a server');
+            return;
+        }
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/leaknewspost/create');
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify({
+            id_game: selectedGame.id,
+            id_servers: selectedServers,
+            post: post.value
+        }));
+        xhr.onload = () => {
+            if(xhr.status == 200){
+                alert('Post created');
+            } else{
+                alert('Error');
+            }
+        }
+    });
 }
 
 function getServerBySelectedGame(){

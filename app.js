@@ -56,8 +56,11 @@ app.use('/leaknewschannel', leaksNewsChannelRouter);
 app.use('/managewebsiteuser', managewebsiteuserRouter);
 app.use('/managediscordusers', managediscordusersRouter);
 
+const myBot = require('./model/classes/Bot');
+myBot.start();
+
+
 // Lancement du serveur
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
 });
-
