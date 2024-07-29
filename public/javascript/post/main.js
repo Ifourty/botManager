@@ -6,6 +6,11 @@ var selectedServers;
 var submitBtn
 var post;
 
+var addImage;
+var imageInput;
+
+var imageTable;
+
 function main(){
     loadVariables();
     initComponent();
@@ -18,7 +23,9 @@ function loadVariables(){
     serverSelector = document.getElementById('serverSelector');
     submitBtn = document.getElementById('submitBtn');
     post = document.getElementById('post');
-}
+    addImage = document.getElementById('addImage');
+    imageInput = document.getElementById('imageInput');}
+    imageTable = [];
 
 function initComponent(){
     for(var i = 0; i < games.length; i++){
@@ -45,21 +52,60 @@ function initComponent(){
             return;
         }
 
+        if(post.value.length >= 2000){
+            alert('Post is too long (max 2000 characters | current: ' + post.value.length + ')');
+            return
+        }
+
+        var formData = new FormData();
+        formData.append('id_game', selectedGame.id);
+        formData.append('id_servers', JSON.stringify(selectedServers));
+        formData.append('post', post.value);
+        
+        for (var i = 0; i < imageTable.length; i++) {
+            formData.append('images', imageTable[i]);
+        }
+
         var xhr = new XMLHttpRequest();
         xhr.open('POST', '/leaknewspost/create');
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.send(JSON.stringify({
-            id_game: selectedGame.id,
-            id_servers: selectedServers,
-            post: post.value
-        }));
         xhr.onload = () => {
-            if(xhr.status == 200){
+            if (xhr.status == 200) {
                 alert('Post created');
-            } else{
+            } else {
                 alert('Error');
             }
+        };
+        xhr.send(formData);
+
+    });
+
+    addImage.addEventListener('click', async () => {
+        imageInput.click();
+    });
+
+    imageInput.addEventListener('change', async () => {
+        console.log(imageInput.files);
+        for(var i = 0; i < imageInput.files.length; i++){
+            let file = imageInput.files[i];
+            var reader = new FileReader();
+            reader.onload = function(e){
+                console.log(e.target.result);
+                var img = document.createElement('img');
+                img.src = e.target.result;
+                imageTable.push(file);
+                var div = document.createElement('div');
+                div.classList.add('imagePost');
+                div.addEventListener('click', async () => {
+                    div.remove();
+                    imageTable = imageTable.filter(e => e !== file);
+                });
+                div.appendChild(img);
+                document.getElementById('imagesContainer').appendChild(div);
+            }
+            reader.readAsDataURL(file);
+
         }
+        console.log(imageTable);
     });
 }
 

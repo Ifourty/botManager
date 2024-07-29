@@ -29,8 +29,9 @@
             <textarea id="post" placeholder="Write your post here" class="form-control"> </textarea>
             <h3> Add images </h3>
             <div id="imagesContainer">
-                <div class="btn btn-primary" id="addImage"> Add Image </div>
             </div>
+                <div class="btn btn-primary" id="addImage"> Add Image </div>
+                <input type="file" id="imageInput" class="d-none" multiple enctype="multipart/form-data">
 
             <div id="errorDiv" class="alert alert-danger d-none" role="alert">
                 <p id="errorText"></p>

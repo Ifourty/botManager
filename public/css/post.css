@@ -4,7 +4,6 @@
     flex-direction: column;
     width: 95%;
     margin-left: 5%;
-    overflow-y: auto;
     height: 130vh;
 }
 
@@ -85,14 +84,24 @@
     padding: 2vh;
 }
 
+#imagesContainer{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 10%;
+    width: 80%;
+    gap: 5vh;
+    padding: 2vh;
+}
+
 #post{
     width: 80%;
-    height: 20vh;
+    min-height: 40vh;
     border-radius: 15px;
     border: none;
     padding: 2vh;
     font-size: 1.2em;
     align-self: center;
+    margin-bottom: 5vh;
 }
 
 #postContainer{
@@ -119,5 +128,44 @@
 #submitBtn:hover{
     background-color: var(--darkerColorC);
     cursor: pointer;
+}
+
+#addImage{
+    width: 20%;
+    height: 6vh;
+    font-size: 1.2em;
+    border-radius: 15px;
+    background-color: var(--colorB);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+}
+
+#addImage:hover{
+    background-color: var(--darkerColorB);
+    cursor: pointer;
+}
+
+#imagesContainer>div {
+    display: grid;
+    flex-direction: column;
+    gap: 1vh;
+    padding: 1vh;
+    border-radius: 15px;
+    background-color: var(--colorA);
+    box-shadow: 0 0 10px 0 rgba(24, 24, 24, 0.5);
+    max-width: 30vh;
+    height: fit-content;
+    text-align: center;
+    font-family: 'Arial';
+}
+
+
+#imagesContainer div img{
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    object-fit: cover;
 }
 

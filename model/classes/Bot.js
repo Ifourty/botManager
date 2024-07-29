@@ -26,6 +26,38 @@ class Bot {
             .then(channel => channel.send(message))
             .catch(console.error);
     }
+
+    sendMessageWithImages(channelId, message, images) {
+        this.client.channels.fetch(channelId)
+            .then(channel => {
+                images.forEach(image => {
+                    const file = {
+                        attachment: image.buffer,
+                        name: image.originalname // or any name you prefer
+                    };
+                    channel.send({ files: [file] });
+                })
+                setTimeout(() => {
+                    channel.send(message);
+                }, 5000);
+            })
+            .catch(console.error);
+    }
+
+    sendImages(channelId, images) {
+        this.client.channels.fetch(channelId)
+            .then(channel => {
+                images.forEach(image => {
+                    const file = {
+                        attachment: image.buffer,
+                        name: image.originalname // or any name you prefer
+                    };
+                    channel.send({ files: [file] });
+                });
+            })
+            .catch(console.error);
+    }
+    
 }
 
 const myBot = new Bot(process.env.TOKEN);
